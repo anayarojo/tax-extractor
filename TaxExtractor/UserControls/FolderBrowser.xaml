@@ -18,21 +18,29 @@
             <ColumnDefinition Width="2*"/>
             <ColumnDefinition Width="2*"/>
         </Grid.ColumnDefinitions>
-        <ListView Name="lsvDevices" Grid.Column="0" ItemsSource="{Binding lstDevices}" HorizontalContentAlignment="Stretch" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+        <ListView Name="lsvDevices" Grid.Column="0" ItemsSource="{Binding lstDevices}" 
+                  HorizontalContentAlignment="Stretch" HorizontalAlignment="Stretch" 
+                  VerticalAlignment="Stretch" SelectionChanged="LsvDevices_SelectionChanged">
             <ListView.View>
                 <GridView>
                     <GridViewColumn DisplayMemberBinding="{Binding Name}" Header="Unidad" />
                 </GridView>
             </ListView.View>
         </ListView>
-        <ListView Name="lsvFolders" Grid.Column="1" ItemsSource="{Binding lstFolders}" HorizontalContentAlignment="Stretch" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+        <ListView Name="lsvFolders" Grid.Column="1" 
+                  ItemsSource="{Binding lstFolders}" 
+                  HorizontalContentAlignment="Stretch" 
+                  HorizontalAlignment="Stretch"
+                  ScrollViewer.CanContentScroll="True">
             <ListView.View>
                 <GridView>
                     <GridViewColumn DisplayMemberBinding="{Binding Name}" Header="Carpeta" />
                 </GridView>
             </ListView.View>
         </ListView>
-        <ListView Name="lsvSubfolders" Grid.Column="2" ItemsSource="{Binding lstSubfolders}" HorizontalContentAlignment="Stretch" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+        <ListView Name="lsvSubfolders" Grid.Column="2" ItemsSource="{Binding lstSubfolders}" 
+                  HorizontalContentAlignment="Stretch" HorizontalAlignment="Stretch" 
+                  VerticalAlignment="Stretch">
             <ListView.View>
                 <GridView>
                     <GridViewColumn DisplayMemberBinding="{Binding Name}" Header="Subcarpeta" />

@@ -23,7 +23,7 @@ namespace TaxExtractor.UserControls
     public partial class FolderBrowser : UserControl
     {
         public ObservableCollection<DriveInfo> lstDevices = new ObservableCollection<DriveInfo>();
-        public ObservableCollection<Models.Item> lstFolders = new ObservableCollection<Models.Item>();
+        public ObservableCollection<DirectoryInfo> lstFolders = new ObservableCollection<DirectoryInfo>();
         public ObservableCollection<Models.Item> lstSubfolders = new ObservableCollection<Models.Item>();
 
         public FolderBrowser()
@@ -39,6 +39,20 @@ namespace TaxExtractor.UserControls
             }
             lsvDevices.ItemsSource = null;
             lsvDevices.ItemsSource = lstDevices;
+        }
+
+        private void LsvDevices_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            DriveInfo lObjDriveInfo = (DriveInfo)lsvDevices.SelectedItem;
+            lstFolders.Clear();
+
+            foreach (DirectoryInfo lObjDirectoryInfo in lObjDriveInfo.RootDirectory.GetDirectories())
+            {
+                lstFolders.Add(lObjDirectoryInfo);
+            }
+            lsvFolders.ItemsSource = null;
+            lsvFolders.ItemsSource = lstFolders;
+            ;
         }
     }
 }
