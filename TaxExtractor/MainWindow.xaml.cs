@@ -14,6 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.IO;
 using System.Reflection;
+using TaxExtractor.UserControls;
 
 namespace TaxExtractor
 {
@@ -34,6 +35,9 @@ namespace TaxExtractor
             mStrResultDirectory = System.IO.Path.GetDirectoryName(Assembly.GetEntryAssembly().Location);
             txtInvoicesPath.Text = mStrInvoicesDirectory;
             txtResultPath.Text = mStrResultDirectory;
+
+            //FolderBrowser lObjFolderBrowser = new FolderBrowser();
+            //grdDialogContent.Children.Add(lObjFolderBrowser);
         }
 
         private void DialogHost_DialogClosing(object sender, MaterialDesignThemes.Wpf.DialogClosingEventArgs eventArgs)
