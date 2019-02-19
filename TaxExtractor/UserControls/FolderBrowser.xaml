@@ -30,10 +30,9 @@
         <ListView Name="lsvFolders" Grid.Column="1" 
                   ItemsSource="{Binding lstFolders}" 
                   HorizontalContentAlignment="Stretch" 
-                  HorizontalAlignment="Stretch"
-                  ScrollViewer.CanContentScroll="True">
+                  HorizontalAlignment="Stretch">
             <ListView.View>
-                <GridView>
+                <GridView ScrollViewer.CanContentScroll="False">
                     <GridViewColumn DisplayMemberBinding="{Binding Name}" Header="Carpeta" />
                 </GridView>
             </ListView.View>
