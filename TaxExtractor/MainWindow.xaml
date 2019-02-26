@@ -76,8 +76,10 @@
                     <materialDesign:PackIcon Kind="Plus" Height="22" Width="22" />
                     <Button.CommandParameter>
                         <Grid>
-                            <!--<userControl:FolderBrowser></userControl:FolderBrowser>-->
-                            <userControl:DriversListView></userControl:DriversListView>
+                            <userControl:FolderBrowser></userControl:FolderBrowser>
+                            <!--<userControl:DriversListView></userControl:DriversListView>-->
+                            <!--<userControl:CustomListView></userControl:CustomListView>-->
+                            <!--<userControl:DriversList></userControl:DriversList>-->
                         </Grid>
                     </Button.CommandParameter>
                 </Button>

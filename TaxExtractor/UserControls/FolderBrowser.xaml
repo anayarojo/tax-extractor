@@ -6,55 +6,47 @@
              xmlns:local="clr-namespace:TaxExtractor.UserControls"
              xmlns:system="clr-namespace:System;assembly=mscorlib"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-             mc:Ignorable="d" Width="800" Height="400"
-             Loaded="UserControl_Loaded">
+             mc:Ignorable="d" Width="800" Height="400">
     <Grid Background="White" Margin="16">
         <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*"/>
             <ColumnDefinition Width="2*"/>
-            <ColumnDefinition Width="2*"/>
         </Grid.ColumnDefinitions>
-        <ListView Name="lsvDevices" Grid.Column="0" ItemsSource="{Binding lstDevices}" 
-                  HorizontalContentAlignment="Stretch" HorizontalAlignment="Stretch" 
-                  VerticalAlignment="Stretch" SelectionChanged="LsvDevices_SelectionChanged">
-            <ListView.View>
-                <GridView>
-                    <GridViewColumn DisplayMemberBinding="{Binding Name}" Header="Unidad" />
-                </GridView>
-            </ListView.View>
+        <TextBlock Grid.Column="0" Grid.Row="0" Margin="16 0 0 0" Style="{StaticResource MaterialDesignTitleTextBlock}">Unidades</TextBlock>
+        <TextBlock Grid.Column="1" Grid.Row="0" Margin="32 0 0 0" Style="{StaticResource MaterialDesignTitleTextBlock}">Carpetas</TextBlock>
+        <Separator Grid.ColumnSpan="2" Grid.Row="1" Style="{StaticResource MaterialDesignDarkSeparator}" />
+        <ListView Grid.Column="0" Grid.Row="2" Name="lsvDevices" ItemsSource="{Binding lstDevices}" SelectionChanged="LsvDevices_SelectionChanged">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal">
+                        <materialDesign:PackIcon Kind="{Binding Icon}" Width="28" Height="28" Foreground="{DynamicResource PrimaryHueDarkBrush}" />
+                        <TextBlock Margin="8 0 0 0" Text="{Binding Name}" VerticalAlignment="Center" Style="{StaticResource MaterialDesignBody1TextBlock}"></TextBlock>
+                    </StackPanel>
+                </DataTemplate>
+            </ListView.ItemTemplate>
         </ListView>
-        <ListView Name="lsvFolders" Grid.Column="1" 
-                  ItemsSource="{Binding lstFolders}" 
-                  HorizontalContentAlignment="Stretch" 
-                  HorizontalAlignment="Stretch">
-            <ListView.View>
-                <GridView ScrollViewer.CanContentScroll="False">
-                    <GridViewColumn DisplayMemberBinding="{Binding Name}" Header="Carpeta" />
-                </GridView>
-            </ListView.View>
+        <ListView Grid.Column="1" Grid.Row="2" Name="lsvFolders" Margin="16 0 0 0" ItemsSource="{Binding lstDevices}" MouseDoubleClick="LsvFolders_MouseDoubleClick">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal">
+                        <materialDesign:PackIcon Name="TemplateIcon" Kind="{Binding Icon}" Width="28" Height="28" Foreground="{DynamicResource PrimaryHueDarkBrush}" />
+                        <TextBlock Name="TemplateText" Margin="8 0 0 0" Text="{Binding Name}" VerticalAlignment="Center" Style="{StaticResource MaterialDesignBody1TextBlock}"></TextBlock>
+                    </StackPanel>
+                    <DataTemplate.Triggers>
+                        <DataTrigger Binding="{Binding Icon}" Value="Arrow">
+                            <Setter TargetName="TemplateIcon" Property="RenderTransformOrigin" Value=".5,.5" />
+                        </DataTrigger>
+                    </DataTemplate.Triggers>
+                </DataTemplate>
+            </ListView.ItemTemplate>
         </ListView>
-        <ListView Name="lsvSubfolders" Grid.Column="2" ItemsSource="{Binding lstSubfolders}" 
-                  HorizontalContentAlignment="Stretch" HorizontalAlignment="Stretch" 
-                  VerticalAlignment="Stretch">
-            <ListView.View>
-                <GridView>
-                    <GridViewColumn DisplayMemberBinding="{Binding Name}" Header="Subcarpeta" />
-                </GridView>
-            </ListView.View>
-        </ListView>
-        <StackPanel Grid.Row="1" Grid.ColumnSpan="3" Orientation="Horizontal" HorizontalAlignment="Right">
-            <Button  Style="{StaticResource MaterialDesignFlatButton}" IsDefault="True" Margin="0 8 8 0" Command="materialDesign:DialogHost.CloseDialogCommand">
-                <Button.CommandParameter>
-                    <system:Boolean xmlns:system="clr-namespace:System;assembly=mscorlib">
-                        True
-                    </system:Boolean>
-                </Button.CommandParameter>
-                ACEPTAR
-            </Button>
+        <StackPanel Grid.Row="3" Grid.ColumnSpan="3" Orientation="Horizontal" HorizontalAlignment="Right">
             <Button Style="{StaticResource MaterialDesignFlatButton}" IsCancel="True" Margin="0 8 8 0" Command="materialDesign:DialogHost.CloseDialogCommand">
                 <Button.CommandParameter>
                     <system:Boolean xmlns:system="clr-namespace:System;assembly=mscorlib">
@@ -62,6 +54,14 @@
                     </system:Boolean>
                 </Button.CommandParameter>
                 CANCELAR
+            </Button>
+            <Button Style="{StaticResource MaterialDesignRaisedButton}" IsDefault="True" Margin="0 8 8 0" Command="materialDesign:DialogHost.CloseDialogCommand">
+                <Button.CommandParameter>
+                    <system:Boolean xmlns:system="clr-namespace:System;assembly=mscorlib">
+                        True
+                    </system:Boolean>
+                </Button.CommandParameter>
+                ACEPTAR
             </Button>
         </StackPanel>
     </Grid>

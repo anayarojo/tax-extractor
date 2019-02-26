@@ -8,6 +8,7 @@ namespace TaxExtractor.Models
     public class SelectableViewModel : INotifyPropertyChanged
     {
         private bool _isSelected;
+        private bool _isHover;
         private string _name;
         private string _description;
         private char _code;
@@ -20,10 +21,21 @@ namespace TaxExtractor.Models
             get { return _isSelected; }
             set
             {
-                if (_parent != null && value) _parent.ForEach(x => x.IsSelected = false);
+                //if (_parent != null && value) _parent.ForEach(x => x.IsSelected = false);
 
                 if (_isSelected == value) return;
                 _isSelected = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public bool IsHover
+        {
+            get { return _isHover; }
+            set
+            {
+                if (_isHover == value) return;
+                _isHover = value;
                 OnPropertyChanged();
             }
         }

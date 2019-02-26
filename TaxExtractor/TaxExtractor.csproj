@@ -66,13 +66,23 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Models\FolderBrowserItem.cs" />
     <Compile Include="Models\Item.cs" />
     <Compile Include="Models\SelectableViewModel.cs" />
+    <Compile Include="UserControls\CustomListView.xaml.cs">
+      <DependentUpon>CustomListView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\DriversList.xaml.cs">
+      <DependentUpon>DriversList.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\DriversListView.xaml.cs">
       <DependentUpon>DriversListView.xaml</DependentUpon>
     </Compile>
     <Compile Include="UserControls\FolderBrowser.xaml.cs">
       <DependentUpon>FolderBrowser.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\ListItem.xaml.cs">
+      <DependentUpon>ListItem.xaml</DependentUpon>
     </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -86,11 +96,23 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="UserControls\CustomListView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\DriversList.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="UserControls\DriversListView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UserControls\FolderBrowser.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\ListItem.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
