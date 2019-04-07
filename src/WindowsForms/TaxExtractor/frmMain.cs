@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml;
 using System.Xml.Linq;
-using Microsoft.Office.Interop.Excel;
+using Excel = Microsoft.Office.Interop.Excel;
 
 namespace TaxExtractor
 {
@@ -19,6 +19,10 @@ namespace TaxExtractor
         public frmMain()
         {
             InitializeComponent();
+            cboType.Items.Add("");
+            cboType.Items.Add("");
+            cboType.Items.Add("");
+            cboType.SelectedIndex = 0;
         }
 
         private void BtnSearch_Click(object sender, EventArgs e)
@@ -39,8 +43,9 @@ namespace TaxExtractor
         {
             using (var saveFile = new SaveFileDialog())
             {
-                saveFile.Filter = "CSV files (*.csv)|*.csv|All files (*.*)|*.*";
+                saveFile.Filter = "Excel Documents (*.xls)|*.xls";
                 saveFile.FilterIndex = 1;
+                saveFile.FileName = "Tax_Extractor_Export.xls";
                 saveFile.RestoreDirectory = true;
 
                 DialogResult result = saveFile.ShowDialog();
@@ -121,10 +126,10 @@ namespace TaxExtractor
         {
             try
             {
-                Microsoft.Office.Interop.Excel.Application excel = new Microsoft.Office.Interop.Excel.Application();
-                excel.Visible = true;
-                Microsoft.Office.Interop.Excel.Workbook workbook = excel.Workbooks.Add(System.Reflection.Missing.Value);
-                Microsoft.Office.Interop.Excel.Worksheet sheet1 = (Microsoft.Office.Interop.Excel.Worksheet)workbook.Sheets[1];
+                Excel.Application excel = new Excel.Application();
+                //excel.Visible = true;
+                Excel.Workbook workbook = excel.Workbooks.Add(System.Reflection.Missing.Value);
+                Excel.Worksheet sheet1 = (Excel.Worksheet)workbook.Sheets[1];
                 int StartCol = 1;
                 int StartRow = 1;
                 int j = 0, i = 0;
@@ -132,7 +137,7 @@ namespace TaxExtractor
                 //Write Headers
                 for (j = 0; j < dgvDetailsList.Columns.Count; j++)
                 {
-                    Microsoft.Office.Interop.Excel.Range myRange = (Microsoft.Office.Interop.Excel.Range)sheet1.Cells[StartRow, StartCol + j];
+                    Excel.Range myRange = (Excel.Range)sheet1.Cells[StartRow, StartCol + j];
                     myRange.Value2 = dgvDetailsList.Columns[j].HeaderText;
                 }
 
@@ -145,7 +150,7 @@ namespace TaxExtractor
                     {
                         try
                         {
-                            Microsoft.Office.Interop.Excel.Range myRange = (Microsoft.Office.Interop.Excel.Range)sheet1.Cells[StartRow + i, StartCol + j];
+                            Excel.Range myRange = (Excel.Range)sheet1.Cells[StartRow + i, StartCol + j];
                             myRange.Value2 = dgvDetailsList[j, i].Value == null ? "" : dgvDetailsList[j, i].Value;
                         }
                         catch
@@ -154,10 +159,40 @@ namespace TaxExtractor
                         }
                     }
                 }
+
+                object missingValue = System.Reflection.Missing.Value;
+                workbook.SaveAs(fileName, Excel.XlFileFormat.xlWorkbookNormal, missingValue, missingValue, missingValue, missingValue, Excel.XlSaveAsAccessMode.xlExclusive, missingValue, missingValue, missingValue, missingValue, missingValue);
+                excel.DisplayAlerts = true;
+                workbook.Close(true, missingValue, missingValue);
+                excel.Quit();
+
+                releaseObject(sheet1);
+                releaseObject(workbook);
+                releaseObject(excel);
+
+                MessageBox.Show("El archivo se con los detalles se ha guardado correctamente", "Tax Extractor", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.ToString(), "Tax Extractor", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void releaseObject(object obj)
+        {
+            try
+            {
+                System.Runtime.InteropServices.Marshal.ReleaseComObject(obj);
+                obj = null;
+            }
+            catch (Exception ex)
+            {
+                obj = null;
+                MessageBox.Show("Exception Occurred while releasing object " + ex.ToString());
+            }
+            finally
+            {
+                GC.Collect();
             }
         }
     }
