@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml;
 using System.Xml.Linq;
+using Microsoft.Office.Interop.Excel;
 
 namespace TaxExtractor
 {
@@ -46,7 +47,7 @@ namespace TaxExtractor
 
                 if (result == DialogResult.OK)
                 {
-                    // TODO: guardar csv de la extracción de los detalles
+                    SaveDetailsList(saveFile.FileName);
                 }
             }
         }
@@ -104,7 +105,6 @@ namespace TaxExtractor
                 }
             }
 
-
             if (!string.IsNullOrEmpty(uuid))
             {
                 dgvDetailsList.Rows.Add(new string[]{
@@ -114,6 +114,50 @@ namespace TaxExtractor
                         tax.ToString(),
                         (amount + tax).ToString()
                     });
+            }
+        }
+
+        private void SaveDetailsList(string fileName)
+        {
+            try
+            {
+                Microsoft.Office.Interop.Excel.Application excel = new Microsoft.Office.Interop.Excel.Application();
+                excel.Visible = true;
+                Microsoft.Office.Interop.Excel.Workbook workbook = excel.Workbooks.Add(System.Reflection.Missing.Value);
+                Microsoft.Office.Interop.Excel.Worksheet sheet1 = (Microsoft.Office.Interop.Excel.Worksheet)workbook.Sheets[1];
+                int StartCol = 1;
+                int StartRow = 1;
+                int j = 0, i = 0;
+
+                //Write Headers
+                for (j = 0; j < dgvDetailsList.Columns.Count; j++)
+                {
+                    Microsoft.Office.Interop.Excel.Range myRange = (Microsoft.Office.Interop.Excel.Range)sheet1.Cells[StartRow, StartCol + j];
+                    myRange.Value2 = dgvDetailsList.Columns[j].HeaderText;
+                }
+
+                StartRow++;
+
+                //Write datagridview content
+                for (i = 0; i < dgvDetailsList.Rows.Count; i++)
+                {
+                    for (j = 0; j < dgvDetailsList.Columns.Count; j++)
+                    {
+                        try
+                        {
+                            Microsoft.Office.Interop.Excel.Range myRange = (Microsoft.Office.Interop.Excel.Range)sheet1.Cells[StartRow + i, StartCol + j];
+                            myRange.Value2 = dgvDetailsList[j, i].Value == null ? "" : dgvDetailsList[j, i].Value;
+                        }
+                        catch
+                        {
+                            // None;
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString(), "Tax Extractor", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }

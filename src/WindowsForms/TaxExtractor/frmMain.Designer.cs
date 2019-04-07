@@ -42,6 +42,7 @@
             this.colAmount = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colTax = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colTotal = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cboType = new System.Windows.Forms.ComboBox();
             this.tblPanelMain.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -107,6 +108,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.cboType);
             this.groupBox1.Controls.Add(this.txtPath);
             this.groupBox1.Controls.Add(this.btnSearch);
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -124,13 +126,13 @@
             this.txtPath.Enabled = false;
             this.txtPath.Location = new System.Drawing.Point(6, 22);
             this.txtPath.Name = "txtPath";
-            this.txtPath.Size = new System.Drawing.Size(652, 20);
+            this.txtPath.Size = new System.Drawing.Size(477, 20);
             this.txtPath.TabIndex = 1;
             // 
             // btnSearch
             // 
             this.btnSearch.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnSearch.Location = new System.Drawing.Point(664, 22);
+            this.btnSearch.Location = new System.Drawing.Point(664, 20);
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.Size = new System.Drawing.Size(75, 23);
             this.btnSearch.TabIndex = 0;
@@ -204,6 +206,20 @@
             this.colTotal.Name = "colTotal";
             this.colTotal.ReadOnly = true;
             // 
+            // cboType
+            // 
+            this.cboType.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.cboType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboType.FormattingEnabled = true;
+            this.cboType.Items.AddRange(new object[] {
+            "Comprobantes de Ingreso",
+            "Comprobantes de Egreso",
+            "Comprobantes de Traslado"});
+            this.cboType.Location = new System.Drawing.Point(489, 21);
+            this.cboType.Name = "cboType";
+            this.cboType.Size = new System.Drawing.Size(170, 21);
+            this.cboType.TabIndex = 2;
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -239,6 +255,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn colAmount;
         private System.Windows.Forms.DataGridViewTextBoxColumn colTax;
         private System.Windows.Forms.DataGridViewTextBoxColumn colTotal;
+        private System.Windows.Forms.ComboBox cboType;
     }
 }
 
