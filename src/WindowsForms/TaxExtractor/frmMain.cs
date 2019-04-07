@@ -77,8 +77,43 @@ namespace TaxExtractor
             foreach(FileInfo fileInfo in fileInfos)
             {
                 XDocument document = XDocument.Load(fileInfo.FullName);
-                XElement root = document.Root;
-                dgvDetailsList.Rows.Add(fileInfo.Name);
+                LoadInvoice(fileInfo.Name, document);   
+            }
+        }
+
+        private void LoadInvoice(string fileName, XDocument document)
+        {
+            XElement comprobante = document.Descendants("{http://www.sat.gob.mx/cfd/3}Comprobante").FirstOrDefault();
+            XElement conceptos = comprobante.Descendants("{http://www.sat.gob.mx/cfd/3}Conceptos").FirstOrDefault();
+            XElement complemento = comprobante.Descendants("{http://www.sat.gob.mx/cfd/3}Complemento").FirstOrDefault();
+            XElement timbre = complemento.Descendants("{http://www.sat.gob.mx/TimbreFiscalDigital}TimbreFiscalDigital").FirstOrDefault();
+
+            if (comprobante == null || conceptos == null || complemento == null || timbre == null) return;
+
+            string uuid = timbre.Attribute("UUID").Value ?? string.Empty;
+            double amount = 0;
+            double tax = 0;
+            
+            foreach(XElement concepto in conceptos.DescendantNodes())
+            {
+                XElement traslado = concepto.Descendants("{http://www.sat.gob.mx/cfd/3}Traslado").FirstOrDefault();
+                if(traslado != null)
+                {
+                    amount += Convert.ToDouble(traslado.Attribute("Base").Value);
+                    tax += Convert.ToDouble(traslado.Attribute("Importe").Value);
+                }
+            }
+
+
+            if (!string.IsNullOrEmpty(uuid))
+            {
+                dgvDetailsList.Rows.Add(new string[]{
+                        fileName,
+                        uuid,
+                        amount.ToString(),
+                        tax.ToString(),
+                        (amount + tax).ToString()
+                    });
             }
         }
     }

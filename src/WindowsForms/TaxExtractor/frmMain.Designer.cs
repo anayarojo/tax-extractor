@@ -38,6 +38,10 @@
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.dgvDetailsList = new System.Windows.Forms.DataGridView();
             this.colName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colUuid = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colAmount = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colTax = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colTotal = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tblPanelMain.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -157,7 +161,11 @@
             this.dgvDetailsList.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvDetailsList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvDetailsList.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.colName});
+            this.colName,
+            this.colUuid,
+            this.colAmount,
+            this.colTax,
+            this.colTotal});
             this.dgvDetailsList.Location = new System.Drawing.Point(6, 19);
             this.dgvDetailsList.MultiSelect = false;
             this.dgvDetailsList.Name = "dgvDetailsList";
@@ -170,6 +178,31 @@
             // 
             this.colName.HeaderText = "Nombre";
             this.colName.Name = "colName";
+            this.colName.ReadOnly = true;
+            // 
+            // colUuid
+            // 
+            this.colUuid.HeaderText = "UUID";
+            this.colUuid.Name = "colUuid";
+            this.colUuid.ReadOnly = true;
+            // 
+            // colAmount
+            // 
+            this.colAmount.HeaderText = "Importe";
+            this.colAmount.Name = "colAmount";
+            this.colAmount.ReadOnly = true;
+            // 
+            // colTax
+            // 
+            this.colTax.HeaderText = "IVA";
+            this.colTax.Name = "colTax";
+            this.colTax.ReadOnly = true;
+            // 
+            // colTotal
+            // 
+            this.colTotal.HeaderText = "Total";
+            this.colTotal.Name = "colTotal";
+            this.colTotal.ReadOnly = true;
             // 
             // frmMain
             // 
@@ -202,6 +235,10 @@
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.DataGridView dgvDetailsList;
         private System.Windows.Forms.DataGridViewTextBoxColumn colName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colUuid;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colAmount;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colTax;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colTotal;
     }
 }
 
