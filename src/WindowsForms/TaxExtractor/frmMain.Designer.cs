@@ -33,6 +33,7 @@
             this.btnClose = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.cboType = new System.Windows.Forms.ComboBox();
             this.txtPath = new System.Windows.Forms.TextBox();
             this.btnSearch = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
@@ -42,7 +43,6 @@
             this.colAmount = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colTax = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colTotal = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cboType = new System.Windows.Forms.ComboBox();
             this.tblPanelMain.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -118,6 +118,16 @@
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Buscar carpeta de facturas";
+            // 
+            // cboType
+            // 
+            this.cboType.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.cboType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboType.FormattingEnabled = true;
+            this.cboType.Location = new System.Drawing.Point(489, 21);
+            this.cboType.Name = "cboType";
+            this.cboType.Size = new System.Drawing.Size(170, 21);
+            this.cboType.TabIndex = 2;
             // 
             // txtPath
             // 
@@ -205,20 +215,6 @@
             this.colTotal.HeaderText = "Total";
             this.colTotal.Name = "colTotal";
             this.colTotal.ReadOnly = true;
-            // 
-            // cboType
-            // 
-            this.cboType.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.cboType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboType.FormattingEnabled = true;
-            this.cboType.Items.AddRange(new object[] {
-            "Comprobantes de Ingreso",
-            "Comprobantes de Egreso",
-            "Comprobantes de Traslado"});
-            this.cboType.Location = new System.Drawing.Point(489, 21);
-            this.cboType.Name = "cboType";
-            this.cboType.Size = new System.Drawing.Size(170, 21);
-            this.cboType.TabIndex = 2;
             // 
             // frmMain
             // 

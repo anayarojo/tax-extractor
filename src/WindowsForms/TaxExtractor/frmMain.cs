@@ -19,9 +19,9 @@ namespace TaxExtractor
         public frmMain()
         {
             InitializeComponent();
-            cboType.Items.Add("");
-            cboType.Items.Add("");
-            cboType.Items.Add("");
+            cboType.Items.Add("Comprobantes de Ingreso");
+            cboType.Items.Add("Comprobantes de Egreso");
+            cboType.Items.Add("Comprobantes de Traslado");
             cboType.SelectedIndex = 0;
         }
 
