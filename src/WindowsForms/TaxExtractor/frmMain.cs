@@ -19,9 +19,11 @@ namespace TaxExtractor
         public frmMain()
         {
             InitializeComponent();
-            cboType.Items.Add("Comprobantes de Ingreso");
-            cboType.Items.Add("Comprobantes de Egreso");
-            cboType.Items.Add("Comprobantes de Traslado");
+            cboType.Items.Add(new ComboboxItem() { Value = "I", Text = "Comprobantes de Ingreso" });
+            cboType.Items.Add(new ComboboxItem() { Value = "E", Text = "Comprobantes de Egreso" });
+            cboType.Items.Add(new ComboboxItem() { Value = "T", Text = "Comprobantes de Traslado" });
+            cboType.Items.Add(new ComboboxItem() { Value = "N", Text = "Comprobantes de Nómina" });
+            cboType.Items.Add(new ComboboxItem() { Value = "P", Text = "Comprobantes de Pago" });
             cboType.SelectedIndex = 0;
         }
 
@@ -36,6 +38,14 @@ namespace TaxExtractor
                     txtPath.Text = folderBrowser.SelectedPath;
                     LoadFiles(folderBrowser.SelectedPath, Directory.GetFiles(folderBrowser.SelectedPath));
                 }
+            }
+        }
+
+        private void CboType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrEmpty(txtPath.Text))
+            {
+                LoadFiles(txtPath.Text, Directory.GetFiles(txtPath.Text));
             }
         }
 
@@ -72,38 +82,55 @@ namespace TaxExtractor
 
         private void LoadFiles(string selectedPath, string[] files)
         {
-            FileInfo[] fileInfos = files.Select(x => new FileInfo(x)).Where(x => x.Extension == ".xml").ToArray();
+            dgvDetailsList.Rows.Clear();
 
-            if(fileInfos.Length == 0)
+            List<FileInfo> fileInfos = files.Select(x => new FileInfo(x))
+                .Where(x => x.Extension == ".xml")
+                .ToList();
+
+            if(fileInfos.Count == 0)
             {
-                MessageBox.Show("No se encontraron archivos xml.", "Tax Extractor", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("No se encontrarón archivos xml.", "Tax Extractor", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
 
-            foreach(FileInfo fileInfo in fileInfos)
+            ComboboxItem selectedType = ((ComboboxItem)cboType.SelectedItem);
+            string selectedTypeValue = selectedType.Value.ToString();
+            string selectedTypeText = selectedType.Text.ToString();
+
+            var results = fileInfos.Select(x => new { fileInfo = x, document = XDocument.Load(x.FullName) })
+                .Select(x => new { fileInfo = x.fileInfo, receipt = x.document.Descendants("{http://www.sat.gob.mx/cfd/3}Comprobante").FirstOrDefault() })
+                .Where(x=> x.receipt.Attribute("TipoDeComprobante").Value == selectedTypeValue)
+                .ToList();
+
+            if (results.Count == 0)
             {
-                XDocument document = XDocument.Load(fileInfo.FullName);
-                LoadInvoice(fileInfo.Name, document);   
+                MessageBox.Show($"No se encontrarón {selectedTypeText}.", "Tax Extractor", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+
+            foreach(var result in results)
+            {
+                LoadReceipt(result.fileInfo, result.receipt);
             }
         }
 
-        private void LoadInvoice(string fileName, XDocument document)
+        private void LoadReceipt(FileInfo fileInfo, XElement receipt)
         {
-            XElement comprobante = document.Descendants("{http://www.sat.gob.mx/cfd/3}Comprobante").FirstOrDefault();
-            XElement conceptos = comprobante.Descendants("{http://www.sat.gob.mx/cfd/3}Conceptos").FirstOrDefault();
-            XElement complemento = comprobante.Descendants("{http://www.sat.gob.mx/cfd/3}Complemento").FirstOrDefault();
-            XElement timbre = complemento.Descendants("{http://www.sat.gob.mx/TimbreFiscalDigital}TimbreFiscalDigital").FirstOrDefault();
+            XElement concepts = receipt.Descendants("{http://www.sat.gob.mx/cfd/3}Conceptos").FirstOrDefault();
+            XElement complement = receipt.Descendants("{http://www.sat.gob.mx/cfd/3}Complemento").FirstOrDefault();
+            XElement timbre = complement.Descendants("{http://www.sat.gob.mx/TimbreFiscalDigital}TimbreFiscalDigital").FirstOrDefault();
 
-            if (comprobante == null || conceptos == null || complemento == null || timbre == null) return;
+            if (concepts == null || complement == null || timbre == null) return;
 
             string uuid = timbre.Attribute("UUID").Value ?? string.Empty;
             double amount = 0;
             double tax = 0;
-            
-            foreach(XElement concepto in conceptos.DescendantNodes())
+
+            foreach (XElement concept in concepts.DescendantNodes())
             {
-                XElement traslado = concepto.Descendants("{http://www.sat.gob.mx/cfd/3}Traslado").FirstOrDefault();
-                if(traslado != null)
+                XElement traslado = concept.Descendants("{http://www.sat.gob.mx/cfd/3}Traslado").FirstOrDefault();
+                if (traslado != null)
                 {
                     amount += Convert.ToDouble(traslado.Attribute("Base").Value);
                     tax += Convert.ToDouble(traslado.Attribute("Importe").Value);
@@ -113,7 +140,7 @@ namespace TaxExtractor
             if (!string.IsNullOrEmpty(uuid))
             {
                 dgvDetailsList.Rows.Add(new string[]{
-                        fileName,
+                        fileInfo.Name,
                         uuid,
                         amount.ToString(),
                         tax.ToString(),

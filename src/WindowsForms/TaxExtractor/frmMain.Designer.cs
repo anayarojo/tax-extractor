@@ -128,6 +128,7 @@
             this.cboType.Name = "cboType";
             this.cboType.Size = new System.Drawing.Size(170, 21);
             this.cboType.TabIndex = 2;
+            this.cboType.SelectedIndexChanged += new System.EventHandler(this.CboType_SelectedIndexChanged);
             // 
             // txtPath
             // 
