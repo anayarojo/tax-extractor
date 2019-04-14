@@ -18,3 +18,11 @@ Tax extractor es una aplicación con la cual es posible obtener los impuestos de
 
 #### Lista de facturas
 ![Tax Extractor Preview](https://raw.githubusercontent.com/anayarojo/tax-extractor/master/src/WindowsForms/img/tax-extractor-preview-2.png)
+
+### Instaladores
+
+Debug
+https://github.com/anayarojo/tax-extractor/tree/master/dist/WindowsForms/Debug
+
+Release
+https://github.com/anayarojo/tax-extractor/tree/master/dist/WindowsForms/Release
