@@ -5,6 +5,8 @@ VisualStudioVersion = 15.0.27130.2010
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaxExtractor", "TaxExtractor\TaxExtractor.csproj", "{A297D824-0ED2-482D-BDBA-A1C88D19433E}"
 EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "TaxExtractorInstaller", "TaxExtractorInstaller\TaxExtractorInstaller.vdproj", "{496F8A9F-8FFC-4D7E-87ED-D4C5C4C04846}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,8 @@ Global
 		{A297D824-0ED2-482D-BDBA-A1C88D19433E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A297D824-0ED2-482D-BDBA-A1C88D19433E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A297D824-0ED2-482D-BDBA-A1C88D19433E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{496F8A9F-8FFC-4D7E-87ED-D4C5C4C04846}.Debug|Any CPU.ActiveCfg = Debug
+		{496F8A9F-8FFC-4D7E-87ED-D4C5C4C04846}.Release|Any CPU.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -30,26 +30,27 @@
         {
             this.tblMainPanel = new System.Windows.Forms.TableLayoutPanel();
             this.pnlSearch = new System.Windows.Forms.Panel();
-            this.pnlActions = new System.Windows.Forms.Panel();
-            this.pnlDetailsList = new System.Windows.Forms.Panel();
+            this.txtPath = new MaterialSkin.Controls.MaterialSingleLineTextField();
+            this.btnSearch = new MaterialSkin.Controls.MaterialFlatButton();
             this.materialLabel3 = new MaterialSkin.Controls.MaterialLabel();
-            this.detailsListDivider = new MaterialSkin.Controls.MaterialDivider();
+            this.materialPanel1 = new TaxExtractor.UserControls.MaterialPanel();
+            this.pnlActions = new System.Windows.Forms.Panel();
+            this.btnSave = new MaterialSkin.Controls.MaterialRaisedButton();
             this.btnClose = new MaterialSkin.Controls.MaterialFlatButton();
             this.materialLabel1 = new MaterialSkin.Controls.MaterialLabel();
-            this.btnSave = new MaterialSkin.Controls.MaterialRaisedButton();
-            this.btnSearch = new MaterialSkin.Controls.MaterialFlatButton();
-            this.txtPath = new MaterialSkin.Controls.MaterialSingleLineTextField();
-            this.listView1 = new System.Windows.Forms.ListView();
+            this.materialPanel4 = new TaxExtractor.UserControls.MaterialPanel();
+            this.pnlDetailsList = new System.Windows.Forms.Panel();
+            this.lsvDetailsList = new MaterialSkin.Controls.MaterialListView();
             this.colName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.colUuid = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.colAmount = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.colTax = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.colTotal = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.materialPanel1 = new TaxExtractor.UserControls.MaterialPanel();
-            this.materialPanel4 = new TaxExtractor.UserControls.MaterialPanel();
-            this.materialPanel3 = new TaxExtractor.UserControls.MaterialPanel();
-            this.materialPanel2 = new TaxExtractor.UserControls.MaterialPanel();
             this.materialLabel2 = new MaterialSkin.Controls.MaterialLabel();
+            this.materialPanel3 = new TaxExtractor.UserControls.MaterialPanel();
+            this.detailsListDivider = new MaterialSkin.Controls.MaterialDivider();
+            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.materialPanel2 = new TaxExtractor.UserControls.MaterialPanel();
             this.tblMainPanel.SuspendLayout();
             this.pnlSearch.SuspendLayout();
             this.pnlActions.SuspendLayout();
@@ -92,29 +93,39 @@
             this.pnlSearch.Size = new System.Drawing.Size(752, 74);
             this.pnlSearch.TabIndex = 0;
             // 
-            // pnlActions
+            // txtPath
             // 
-            this.pnlActions.Controls.Add(this.btnSave);
-            this.pnlActions.Controls.Add(this.btnClose);
-            this.pnlActions.Controls.Add(this.materialLabel1);
-            this.pnlActions.Controls.Add(this.materialPanel4);
-            this.pnlActions.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlActions.Location = new System.Drawing.Point(23, 337);
-            this.pnlActions.Name = "pnlActions";
-            this.pnlActions.Size = new System.Drawing.Size(752, 74);
-            this.pnlActions.TabIndex = 0;
+            this.txtPath.Depth = 0;
+            this.txtPath.Enabled = false;
+            this.txtPath.Hint = "";
+            this.txtPath.Location = new System.Drawing.Point(20, 36);
+            this.txtPath.MaxLength = 32767;
+            this.txtPath.MouseState = MaterialSkin.MouseState.HOVER;
+            this.txtPath.Name = "txtPath";
+            this.txtPath.PasswordChar = '\0';
+            this.txtPath.SelectedText = "";
+            this.txtPath.SelectionLength = 0;
+            this.txtPath.SelectionStart = 0;
+            this.txtPath.Size = new System.Drawing.Size(634, 23);
+            this.txtPath.TabIndex = 7;
+            this.txtPath.TabStop = false;
+            this.txtPath.UseSystemPasswordChar = false;
             // 
-            // pnlDetailsList
+            // btnSearch
             // 
-            this.pnlDetailsList.Controls.Add(this.materialLabel2);
-            this.pnlDetailsList.Controls.Add(this.listView1);
-            this.pnlDetailsList.Controls.Add(this.materialPanel3);
-            this.pnlDetailsList.Controls.Add(this.detailsListDivider);
-            this.pnlDetailsList.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlDetailsList.Location = new System.Drawing.Point(23, 103);
-            this.pnlDetailsList.Name = "pnlDetailsList";
-            this.pnlDetailsList.Size = new System.Drawing.Size(752, 228);
-            this.pnlDetailsList.TabIndex = 0;
+            this.btnSearch.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnSearch.AutoSize = true;
+            this.btnSearch.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.btnSearch.Depth = 0;
+            this.btnSearch.Icon = null;
+            this.btnSearch.Location = new System.Drawing.Point(661, 23);
+            this.btnSearch.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.btnSearch.MouseState = MaterialSkin.MouseState.HOVER;
+            this.btnSearch.Name = "btnSearch";
+            this.btnSearch.Primary = false;
+            this.btnSearch.Size = new System.Drawing.Size(74, 36);
+            this.btnSearch.TabIndex = 6;
+            this.btnSearch.Text = "Buscar";
             // 
             // materialLabel3
             // 
@@ -129,18 +140,47 @@
             this.materialLabel3.TabIndex = 2;
             this.materialLabel3.Text = "Buscar facturas";
             // 
-            // detailsListDivider
+            // materialPanel1
             // 
-            this.detailsListDivider.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            this.materialPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.detailsListDivider.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.detailsListDivider.Depth = 0;
-            this.detailsListDivider.Location = new System.Drawing.Point(2, 224);
-            this.detailsListDivider.MouseState = MaterialSkin.MouseState.HOVER;
-            this.detailsListDivider.Name = "detailsListDivider";
-            this.detailsListDivider.Size = new System.Drawing.Size(752, 1);
-            this.detailsListDivider.TabIndex = 3;
-            this.detailsListDivider.Text = "materialDivider1";
+            this.materialPanel1.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.materialPanel1.Location = new System.Drawing.Point(0, 12);
+            this.materialPanel1.Name = "materialPanel1";
+            this.materialPanel1.ShowBottomLine = true;
+            this.materialPanel1.ShowLeftLine = true;
+            this.materialPanel1.ShowRightLine = true;
+            this.materialPanel1.ShowTopLine = true;
+            this.materialPanel1.Size = new System.Drawing.Size(752, 62);
+            this.materialPanel1.TabIndex = 4;
+            // 
+            // pnlActions
+            // 
+            this.pnlActions.Controls.Add(this.btnSave);
+            this.pnlActions.Controls.Add(this.btnClose);
+            this.pnlActions.Controls.Add(this.materialLabel1);
+            this.pnlActions.Controls.Add(this.materialPanel4);
+            this.pnlActions.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pnlActions.Location = new System.Drawing.Point(23, 337);
+            this.pnlActions.Name = "pnlActions";
+            this.pnlActions.Size = new System.Drawing.Size(752, 74);
+            this.pnlActions.TabIndex = 0;
+            // 
+            // btnSave
+            // 
+            this.btnSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnSave.AutoSize = true;
+            this.btnSave.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.btnSave.Depth = 0;
+            this.btnSave.Icon = null;
+            this.btnSave.Location = new System.Drawing.Point(651, 26);
+            this.btnSave.MouseState = MaterialSkin.MouseState.HOVER;
+            this.btnSave.Name = "btnSave";
+            this.btnSave.Primary = true;
+            this.btnSave.Size = new System.Drawing.Size(84, 36);
+            this.btnSave.TabIndex = 4;
+            this.btnSave.Text = "Guardar";
+            this.btnSave.UseVisualStyleBackColor = true;
             // 
             // btnClose
             // 
@@ -148,11 +188,13 @@
             this.btnClose.AutoSize = true;
             this.btnClose.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.btnClose.Depth = 0;
-            this.btnClose.Location = new System.Drawing.Point(591, 27);
+            this.btnClose.Icon = null;
+            this.btnClose.Location = new System.Drawing.Point(571, 26);
+            this.btnClose.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.btnClose.MouseState = MaterialSkin.MouseState.HOVER;
             this.btnClose.Name = "btnClose";
             this.btnClose.Primary = false;
-            this.btnClose.Size = new System.Drawing.Size(64, 36);
+            this.btnClose.Size = new System.Drawing.Size(73, 36);
             this.btnClose.TabIndex = 4;
             this.btnClose.Text = "Cerrar";
             // 
@@ -169,101 +211,6 @@
             this.materialLabel1.TabIndex = 5;
             this.materialLabel1.Text = "Acciones";
             // 
-            // btnSave
-            // 
-            this.btnSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnSave.Depth = 0;
-            this.btnSave.Location = new System.Drawing.Point(661, 27);
-            this.btnSave.MouseState = MaterialSkin.MouseState.HOVER;
-            this.btnSave.Name = "btnSave";
-            this.btnSave.Primary = true;
-            this.btnSave.Size = new System.Drawing.Size(77, 36);
-            this.btnSave.TabIndex = 4;
-            this.btnSave.Text = "Guardar";
-            this.btnSave.UseVisualStyleBackColor = true;
-            // 
-            // btnSearch
-            // 
-            this.btnSearch.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnSearch.AutoSize = true;
-            this.btnSearch.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.btnSearch.Depth = 0;
-            this.btnSearch.Location = new System.Drawing.Point(661, 23);
-            this.btnSearch.MouseState = MaterialSkin.MouseState.HOVER;
-            this.btnSearch.Name = "btnSearch";
-            this.btnSearch.Primary = false;
-            this.btnSearch.Size = new System.Drawing.Size(65, 36);
-            this.btnSearch.TabIndex = 6;
-            this.btnSearch.Text = "Buscar";
-            // 
-            // txtPath
-            // 
-            this.txtPath.Depth = 0;
-            this.txtPath.Enabled = false;
-            this.txtPath.Hint = "";
-            this.txtPath.Location = new System.Drawing.Point(20, 36);
-            this.txtPath.MouseState = MaterialSkin.MouseState.HOVER;
-            this.txtPath.Name = "txtPath";
-            this.txtPath.PasswordChar = '\0';
-            this.txtPath.SelectedText = "";
-            this.txtPath.SelectionLength = 0;
-            this.txtPath.SelectionStart = 0;
-            this.txtPath.Size = new System.Drawing.Size(635, 23);
-            this.txtPath.TabIndex = 7;
-            this.txtPath.UseSystemPasswordChar = false;
-            // 
-            // listView1
-            // 
-            this.listView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.listView1.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.colName,
-            this.colUuid,
-            this.colAmount,
-            this.colTax,
-            this.colTotal});
-            this.listView1.Location = new System.Drawing.Point(16, 35);
-            this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(722, 182);
-            this.listView1.TabIndex = 6;
-            this.listView1.UseCompatibleStateImageBehavior = false;
-            // 
-            // colName
-            // 
-            this.colName.Text = "Nombre";
-            // 
-            // colUuid
-            // 
-            this.colUuid.Text = "UUID";
-            // 
-            // colAmount
-            // 
-            this.colAmount.Text = "Importe";
-            // 
-            // colTax
-            // 
-            this.colTax.Text = "IVA";
-            // 
-            // colTotal
-            // 
-            this.colTotal.Text = "Total";
-            // 
-            // materialPanel1
-            // 
-            this.materialPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.materialPanel1.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.materialPanel1.Location = new System.Drawing.Point(0, 12);
-            this.materialPanel1.Name = "materialPanel1";
-            this.materialPanel1.ShowBottomLine = true;
-            this.materialPanel1.ShowLeftLine = true;
-            this.materialPanel1.ShowRightLine = true;
-            this.materialPanel1.ShowTopLine = true;
-            this.materialPanel1.Size = new System.Drawing.Size(752, 62);
-            this.materialPanel1.TabIndex = 4;
-            // 
             // materialPanel4
             // 
             this.materialPanel4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
@@ -277,6 +224,62 @@
             this.materialPanel4.ShowTopLine = true;
             this.materialPanel4.Size = new System.Drawing.Size(752, 54);
             this.materialPanel4.TabIndex = 5;
+            // 
+            // pnlDetailsList
+            // 
+            this.pnlDetailsList.Controls.Add(this.lsvDetailsList);
+            this.pnlDetailsList.Controls.Add(this.materialLabel2);
+            this.pnlDetailsList.Controls.Add(this.materialPanel3);
+            this.pnlDetailsList.Controls.Add(this.detailsListDivider);
+            this.pnlDetailsList.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pnlDetailsList.Location = new System.Drawing.Point(23, 103);
+            this.pnlDetailsList.Name = "pnlDetailsList";
+            this.pnlDetailsList.Size = new System.Drawing.Size(752, 228);
+            this.pnlDetailsList.TabIndex = 0;
+            // 
+            // lsvDetailsList
+            // 
+            this.lsvDetailsList.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lsvDetailsList.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.lsvDetailsList.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.colName,
+            this.colUuid});
+            this.lsvDetailsList.Depth = 0;
+            this.lsvDetailsList.Font = new System.Drawing.Font("Roboto", 32F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.World);
+            this.lsvDetailsList.FullRowSelect = true;
+            this.lsvDetailsList.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
+            this.lsvDetailsList.Location = new System.Drawing.Point(16, 35);
+            this.lsvDetailsList.MouseLocation = new System.Drawing.Point(-1, -1);
+            this.lsvDetailsList.MouseState = MaterialSkin.MouseState.OUT;
+            this.lsvDetailsList.Name = "lsvDetailsList";
+            this.lsvDetailsList.OwnerDraw = true;
+            this.lsvDetailsList.Size = new System.Drawing.Size(719, 190);
+            this.lsvDetailsList.TabIndex = 6;
+            this.lsvDetailsList.UseCompatibleStateImageBehavior = false;
+            this.lsvDetailsList.View = System.Windows.Forms.View.Details;
+            // 
+            // colName
+            // 
+            this.colName.Text = "Nombre";
+            // 
+            // colUuid
+            // 
+            this.colUuid.Text = "UUID";
+            // 
+            // materialLabel2
+            // 
+            this.materialLabel2.AutoSize = true;
+            this.materialLabel2.Depth = 0;
+            this.materialLabel2.Font = new System.Drawing.Font("Roboto", 11F);
+            this.materialLabel2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.materialLabel2.Location = new System.Drawing.Point(12, 13);
+            this.materialLabel2.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialLabel2.Name = "materialLabel2";
+            this.materialLabel2.Size = new System.Drawing.Size(119, 19);
+            this.materialLabel2.TabIndex = 2;
+            this.materialLabel2.Text = "Lista de detalles";
             // 
             // materialPanel3
             // 
@@ -293,6 +296,39 @@
             this.materialPanel3.Size = new System.Drawing.Size(752, 208);
             this.materialPanel3.TabIndex = 5;
             // 
+            // detailsListDivider
+            // 
+            this.detailsListDivider.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.detailsListDivider.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.detailsListDivider.Depth = 0;
+            this.detailsListDivider.Location = new System.Drawing.Point(2, 224);
+            this.detailsListDivider.MouseState = MaterialSkin.MouseState.HOVER;
+            this.detailsListDivider.Name = "detailsListDivider";
+            this.detailsListDivider.Size = new System.Drawing.Size(752, 1);
+            this.detailsListDivider.TabIndex = 3;
+            this.detailsListDivider.Text = "materialDivider1";
+            // 
+            // columnHeader1
+            // 
+            this.columnHeader1.Text = "Dessert (100g serving)";
+            this.columnHeader1.Width = 200;
+            // 
+            // columnHeader2
+            // 
+            this.columnHeader2.Text = "Calories";
+            this.columnHeader2.Width = 101;
+            // 
+            // columnHeader3
+            // 
+            this.columnHeader3.Text = "Fat (g)";
+            this.columnHeader3.Width = 94;
+            // 
+            // columnHeader4
+            // 
+            this.columnHeader4.Text = "Protein (g)";
+            this.columnHeader4.Width = 154;
+            // 
             // materialPanel2
             // 
             this.materialPanel2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -307,19 +343,6 @@
             this.materialPanel2.ShowTopLine = false;
             this.materialPanel2.Size = new System.Drawing.Size(800, 434);
             this.materialPanel2.TabIndex = 1;
-            // 
-            // materialLabel2
-            // 
-            this.materialLabel2.AutoSize = true;
-            this.materialLabel2.Depth = 0;
-            this.materialLabel2.Font = new System.Drawing.Font("Roboto", 11F);
-            this.materialLabel2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.materialLabel2.Location = new System.Drawing.Point(12, 13);
-            this.materialLabel2.MouseState = MaterialSkin.MouseState.HOVER;
-            this.materialLabel2.Name = "materialLabel2";
-            this.materialLabel2.Size = new System.Drawing.Size(119, 19);
-            this.materialLabel2.TabIndex = 2;
-            this.materialLabel2.Text = "Lista de detalles";
             // 
             // frmMain
             // 
@@ -358,13 +381,14 @@
         private MaterialSkin.Controls.MaterialRaisedButton btnSave;
         private MaterialSkin.Controls.MaterialSingleLineTextField txtPath;
         private MaterialSkin.Controls.MaterialFlatButton btnSearch;
-        private System.Windows.Forms.ListView listView1;
+        private MaterialSkin.Controls.MaterialLabel materialLabel2;
+        private System.Windows.Forms.ColumnHeader columnHeader1;
+        private System.Windows.Forms.ColumnHeader columnHeader2;
+        private System.Windows.Forms.ColumnHeader columnHeader3;
+        private System.Windows.Forms.ColumnHeader columnHeader4;
+        private MaterialSkin.Controls.MaterialListView lsvDetailsList;
         private System.Windows.Forms.ColumnHeader colName;
         private System.Windows.Forms.ColumnHeader colUuid;
-        private System.Windows.Forms.ColumnHeader colAmount;
-        private System.Windows.Forms.ColumnHeader colTax;
-        private System.Windows.Forms.ColumnHeader colTotal;
-        private MaterialSkin.Controls.MaterialLabel materialLabel2;
     }
 }
 
